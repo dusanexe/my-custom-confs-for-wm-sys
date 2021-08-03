@@ -2,4 +2,4 @@
 
 i3blocks look:
 
-https://i.imgur.com/2Yvt57c.png
+![Alt text](https://i.imgur.com/2Yvt57c.png "Optional title")
