@@ -1,0 +1,92 @@
+# i3blocks configuration file
+#
+# The i3blocks man page describes the usage of the binary,
+# and its website describes the configuration:
+#
+#     https://vivien.github.io/i3blocks
+
+
+# Global properties
+separator=false
+#separator_block_width=150
+
+#[documentation]
+#website=https://vivien.github.io/i3blocks
+#command=xdg-open "$website"
+#color=#f12711
+[greetings]
+#color=#f5af19
+color=#ff8000
+command=echo "Hello, friend!"
+interval=once
+
+[brightness]
+label=bright:
+command=cat /sys/class/backlight/intel_backlight/brightness
+interval=1
+color=#f5af19
+
+[volume]
+label=volume:
+command=amixer sget Master | grep 'Front Left:'|cut -d ' ' -f 7
+interval=1
+color=#f7af19
+
+[temps]
+command=sensors -A | grep 'Core 0' | cut -d ' ' -f 1,2,10 |tr -d ' '
+interval=1
+color=#137a7f
+[temps1]
+command=sensors -A | grep 'Core 1' | cut -d ' ' -f 1,2,10 |tr -d ' '
+interval=1
+color=#137a7f
+[temps2]
+command=sensors -A | grep 'Core 2' | cut -d ' ' -f 1,2,10 |tr -d ' '
+interval=1
+color=#137a7f
+[temps3]
+command=sensors -A | grep 'Core 3' | cut -d ' ' -f 1,2,10 |tr -d ' '
+interval=1
+color=#137a7f
+
+[localip]
+color=#f5af19
+command=ifconfig eno1 | grep 'inet ' | cut -d ' ' -f 10
+interval=20
+
+#[realone]
+#command=usage
+#interval=repeat
+
+[mem]
+command=free -h | head -n 2 | tail -n 1 | sed 's/\s/total/10;s/\s/used/15;s/\s/free/20;s/\s/shared/28;s/\s/cache/35;s/\s/avail/40' | tr -s " "
+interval=1
+color=#ff6666
+
+[home]
+command=df -h /home | grep '/dev' | tr -s " " | cut -d ' ' -f 2,5,6
+interval=50
+color=#7ca305
+
+[root]
+command=df -h / | grep '/dev' | tr -s " " | cut -d ' ' -f 2,4,5,6
+interval=2
+color=#b19994
+
+[battery]
+command=acpi -b | cut -d ' ' -f 1,4
+markup=pangR
+interval=1
+color=#82da55
+
+[time]
+command=date '+%d-%m-%Y %H:%M:%S'
+interval=1
+
+#command=test -e /dev/sdb1 && echo 'detected: sdb1'
+
+#[restart]
+#full_text=Restart
+#command=i3-msg -q restart
+#interval=0
+
